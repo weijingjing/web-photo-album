@@ -4,9 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="animate.css">
+    <script type="zepto.min.js"></script>
     <title>web-photo-album</title>
+    <style type="text/css">
+       blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul,img{
+		margin: 0;
+		padding: 0;
+		}
+        body {background-color:#000;}
+        ul {list-style:none;}
+        li {float:left;width:100px;height:100px;overflow:hidden;}
+     </style>
 </head>
 <body>
-    
+    <ul class="img-container" id="container">
+        <li><img src="./img/1.jpg" alt="1.jpg"></li>
+        <li><img src="./img/1.jpg" alt="1.jpg"></li>
+        <li><img src="./img/1.jpg" alt="1.jpg"></li>
+        <li><img src="./img/1.jpg" alt="1.jpg"></li>
+    </ul>
+
+    <script>
+        var total = 5;
+        var zWin = $(window);
+        var render = function(){
+            var winWidth = zWin.width();
+            var padding = 2;
+            var picWidth = Math.floor((winWidth-padding*3)/4);
+            var tmpl = '';
+            // 遍历图片
+            for(var i = 1;i<=total;i++){
+               var imgSrc = 'img/'+i+'.jpg';
+            // 每行的第一张图片没有padding
+               if (i%4==1){
+                   p = 0;
+               }
+                tmpl = tmpl + '<li style="width:'+picWidth+'px;height:'+picWidth+'px;padding-left:'+p+'px;padding-top:'+padding+'px"><img src="'+imgSrc+'"/></li>';
+            }
+            $('#container').html(tmpl);
+        }
+        render();
+    </script>
 </body>
 </html>
